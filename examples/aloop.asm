@@ -1,2 +1,0 @@
-start:
-  jmp start
