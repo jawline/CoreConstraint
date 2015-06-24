@@ -22,6 +22,11 @@ namespace Constraints {
 		Variable createVariable(std::string const& name);
 		
 		/**
+		 * Get the variable with the specified name
+		 */
+		 Variable getVariableWithName(std::string const& name) const;
+		
+		/**
 		 * Add a new constraint to this problem
 		 */
 		void addConstraint(Constraint const& constraint);
