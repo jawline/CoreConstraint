@@ -165,6 +165,8 @@ char const* parseConstraint(Problem& instance, char const* input) {
   
   if (token == EQ) {
     constraint.setComparisonType(Equal);
+  } else if (token == NE) {
+    constraint.setComparisonType(NotEqual);
   } else if (token == GT) {
     constraint.setComparisonType(GreaterThan);
   } else if (token == LT) {
