@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 
+using namespace Constraints;
+
 #define CHECKINPUT() if (!input) { return nullptr; }
 
 extern "C" {
