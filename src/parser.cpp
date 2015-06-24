@@ -85,18 +85,14 @@ char const* parseExpression(Problem& instance, Constraint& constraint, char cons
 
   input = nextToken(&token, input, &tokenStart, &tokenSize);
 
-  if (!input) {
-    return 0;
-  }
+  CHECKINPUT();
 
   if (token == MINUS) {
     input = nextToken(&token, input, &tokenStart, &tokenSize);
     scale *= -1;
   }
 
-  if (!input) {
-    return 0;
-  }
+  CHECKINPUT();
 
   int scalar = objective ? -1 : 1;
   scalar *= scale;
@@ -141,15 +137,11 @@ char const* parseConstraint(Problem& instance, char const* input) {
   
   input = parseExpression(instance, constraint, input, false, 1);
 
-  if (!input) {
-    return 0;
-  }
+  CHECKINPUT();
   
   input = nextToken(&token, input, &tokenStart, &tokenSize);
   
-  if (!input) {
-    return 0;
-  }
+  CHECKINPUT();
   
   if (token != EQ) {
     printf("Expected equals near %s\n", input);
@@ -158,9 +150,7 @@ char const* parseConstraint(Problem& instance, char const* input) {
   
   input = nextToken(&token, input, &tokenStart, &tokenSize);
   
-  if (!input) {
-    return 0;
-  }
+  CHECKINPUT();
   
   if (token != NUM) {
     printf("Expected NUM near %s\n", input);
@@ -186,9 +176,7 @@ char const* parseConstraints(Problem& instance, char const* input) {
   char const* tokenStart;
   input = parseConstraint(instance, input);
   
-  if (!input) {
-    return 0;
-  }
+  CHECKINPUT();
   
   if ((tempInput = nextToken(&token, input, &tokenStart, &tokenSize)) && token == COMMA) {
     return parseConstraints(instance, tempInput);
