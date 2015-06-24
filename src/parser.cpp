@@ -42,6 +42,10 @@ char const* nextToken(TOKEN* token, char const* input, char const** tokenStart, 
     *token = COMMA;
     *tokenSize = 1;
     return input + 1;
+  } else if (strncmp(input, "!=", 2) == 0) {
+    *token == NE;
+    *tokenSize = 2;
+    return input + 2;
   } else if (*input == '=') {
     *token = EQ;
     *tokenSize = 1;
