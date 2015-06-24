@@ -120,9 +120,8 @@ char const* parseExpression(Problem& instance, Constraint& constraint, char cons
   int scalar = objective ? -1 : 1;
   scalar *= scale;
   
-  Variable var = instance.getVariableWithName(std::string(tokenStart, tokenSize));
-  
   if (token == ID) {
+    Variable var = instance.getVariableWithName(std::string(tokenStart, tokenSize));
     constraint.addItem(var, scalar);
   } else if (token == NUM) {
     double parsedValueAsNumber;
@@ -133,6 +132,7 @@ char const* parseExpression(Problem& instance, Constraint& constraint, char cons
     }
 
     if ((tempInput = nextToken(&token, input, &tokenStart, &tokenSize)) && token == ID) {
+      Variable var = instance.getVariableWithName(std::string(tokenStart, tokenSize));
       constraint.addItem(var, parsedValueAsNumber * scalar);
       input = tempInput;
     } else {
@@ -159,11 +159,9 @@ char const* parseConstraint(Problem& instance, char const* input) {
   Constraint constraint;
   
   input = parseExpression(instance, constraint, input, false, 1);
-
   CHECKINPUT();
   
   input = nextToken(&token, input, &tokenStart, &tokenSize);
-  
   CHECKINPUT();
   
   if (token == EQ) {
@@ -184,7 +182,6 @@ char const* parseConstraint(Problem& instance, char const* input) {
   }
   
   input = nextToken(&token, input, &tokenStart, &tokenSize);
-  
   CHECKINPUT();
   
   if (token != NUM) {
@@ -209,8 +206,8 @@ char const* parseConstraints(Problem& instance, char const* input) {
   size_t tokenSize;
   char const* tempInput;
   char const* tokenStart;
+
   input = parseConstraint(instance, input);
-  
   CHECKINPUT();
   
   if ((tempInput = nextToken(&token, input, &tokenStart, &tokenSize)) && token == COMMA) {
