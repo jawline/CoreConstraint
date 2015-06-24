@@ -29,7 +29,7 @@ typedef enum {
 } TOKEN;
  
  void parserInit();
- Problem parseString(char const* input);
+ bool parseString(Problem& instance, char const* input);
  void parserFree();
 
 #endif //_SIMPLEX_PARSER_DEF_H_
