@@ -12,6 +12,10 @@ Variable::Variable(std::string const& name, bool isSigned, unsigned int index) {
 Variable::~Variable() {}
 
 std::string Variable::toString() const {
+	return getName();
+}
+
+std::string Variable::getName() const {
 	return _name;
 }
 
