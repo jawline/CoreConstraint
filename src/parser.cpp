@@ -197,7 +197,7 @@ bool postParseStep(Table& instance) {
   return true;
 }
 
-bool parseString(Table& instance, char const* input) {
+bool parseString(Problem& instance, char const* input) {
   TOKEN token;
   char const* tokenStart;
   size_t tokenSize;
