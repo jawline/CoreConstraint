@@ -2,6 +2,7 @@
 #define _SIMPLEX_PARSER_DEF_H_
 #include <stdbool.h>
 #include "tableau.h"
+#include "problem.h"
 
 using namespace Simplex;
 
@@ -28,7 +29,7 @@ typedef enum {
 } TOKEN;
  
  void parserInit();
- bool parseString(Table& instance, char const* input);
+ Problem parseString(char const* input);
  void parserFree();
 
 #endif //_SIMPLEX_PARSER_DEF_H_
