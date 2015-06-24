@@ -75,7 +75,7 @@ void parserInit() {
   regexParse(&numRegex, "[0-9]+(.[0-9]+)?");
 }
 
-char const* parseExpression(Problem& instance, char const* input, bool objective, int scale) {
+char const* parseExpression(Problem& instance, Constraint& constraint, char const* input, bool objective, int scale) {
   TOKEN token;
   size_t tokenSize;
   char const* tempInput;
@@ -99,9 +99,10 @@ char const* parseExpression(Problem& instance, char const* input, bool objective
   int scalar = objective ? -1 : 1;
   scalar *= scale;
   
+  Variable var = instance.getVariableWithName(std::string(tokenStart, tokenSize));
+  
   if (token == ID) {
-    instance.addColumn(std::string(tokenStart, tokenSize));
-    instance.setField(instance.getCurrentRow(), std::string(tokenStart, tokenSize), scalar);
+    constraint.addItem(var, scalar);
   } else if (token == NUM) {
     double parsedValueAsNumber;
     
@@ -111,8 +112,7 @@ char const* parseExpression(Problem& instance, char const* input, bool objective
     }
 
     if ((tempInput = nextToken(&token, input, &tokenStart, &tokenSize)) && token == ID) {
-      instance.addColumn(std::string(tokenStart, tokenSize));
-      instance.setField(instance.getCurrentRow(), std::string(tokenStart, tokenSize), parsedValueAsNumber * scalar);
+      var.addItem(var, parsedValueAsNumber * scalar);
       input = tempInput;
     } else {
       printf("Expected ID or NUM ID near \"%s\"", input);
@@ -124,7 +124,7 @@ char const* parseExpression(Problem& instance, char const* input, bool objective
   }
   
   if ((tempInput = nextToken(&token, input, &tokenStart, &tokenSize)) && (token == PLUS || token == MINUS)) {
-    return parseExpression(instance, tempInput, objective, token == MINUS ? -1 : 1);
+    return parseExpression(instance, constraint, tempInput, objective, token == MINUS ? -1 : 1);
   } else {
     return input;
   }
@@ -135,9 +135,9 @@ char const* parseConstraint(Problem& instance, char const* input) {
   size_t tokenSize;
   char const* tokenStart;
 
-  instance.addRow();
+  Constraint constraint;
   
-  input = parseExpression(instance, input, false, 1);
+  input = parseExpression(instance, constraint, input, false, 1);
 
   if (!input) {
     return 0;
@@ -166,12 +166,14 @@ char const* parseConstraint(Problem& instance, char const* input) {
   }
 
   double parsedValueAsNumber;
+
   if (!sscanf(tokenStart, "%lf", &parsedValueAsNumber)) {
     printf("SSCANF FAIL\n");
     return 0;
   }
 
-  instance.setField(instance.getCurrentRow(), Constraints::ProblemConstants::cResultColumnName, parsedValueAsNumber);
+  constraint.setResult(parsedValueAsNumber);
+  instance.addConstraint(constraint);
   return input;
 }
 
