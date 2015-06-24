@@ -34,7 +34,7 @@ typedef enum {
 } TOKEN;
  
  void parserInit();
- bool parseString(Problem& instance, char const* input);
+ bool parseString(Constraints::Problem& instance, char const* input);
  void parserFree();
 
 #endif //_SIMPLEX_PARSER_DEF_H_
