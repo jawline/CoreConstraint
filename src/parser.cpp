@@ -7,6 +7,7 @@
 using namespace Constraints;
 
 #define CHECKINPUT() if (!input) { return nullptr; }
+#define CHECKINPUTB() if (!input) { return false; }
 
 extern "C" {
   #include <regexpm/match.h>
@@ -45,7 +46,7 @@ char const* nextToken(TOKEN* token, char const* input, char const** tokenStart, 
     *tokenSize = 1;
     return input + 1;
   } else if (strncmp(input, "!=", 2) == 0) {
-    *token == NE;
+    *token = NE;
     *tokenSize = 2;
     return input + 2;
   } else if (*input == '=') {
@@ -132,7 +133,7 @@ char const* parseExpression(Problem& instance, Constraint& constraint, char cons
     }
 
     if ((tempInput = nextToken(&token, input, &tokenStart, &tokenSize)) && token == ID) {
-      var.addItem(var, parsedValueAsNumber * scalar);
+      constraint.addItem(var, parsedValueAsNumber * scalar);
       input = tempInput;
     } else {
       printf("Expected ID or NUM ID near \"%s\"", input);
@@ -227,76 +228,12 @@ bool parseString(Problem& instance, char const* input) {
   TOKEN token;
   char const* tokenStart;
   size_t tokenSize;
-  
-  instance.addColumn(Constraints::ProblemConstants::cResultColumnName);
-  instance.addRow();
-  
-  input = nextToken(&token, input, &tokenStart, &tokenSize);
-  
-  if (!input) {
-    return false;
-  }
 
-  if (token != MAX) {
-    printf("Expected max to be the next token near %s\n", input);
-    return false;
-  }
-  
-  input = nextToken(&token, input, &tokenStart, &tokenSize);
-  
-  if (!input) {
-    return false;
-  }
-  
-  if (token != ID) {
-    printf("Expected ID near \"%s\"", input);
-    return false;
-  }
-
-  instance.addColumn(std::string(tokenStart, tokenSize));
-  instance.setField(instance.getCurrentRow(), std::string(tokenStart, tokenSize), 1);
-  
-  input = nextToken(&token, input, &tokenStart, &tokenSize);
-  
-  if (!input) {
-    return false;
-  }
-  
-  if (token != EQ) {
-    printf("Expected EQ near \"%s\"", input);
-    return false;
-  }
-  
-  input = parseExpression(instance, input, true, 1);
-  
-  if (!input) {
-    return false;
-  }
-  
-  input = nextToken(&token, input, &tokenStart, &tokenSize);
-  
-  if (!input) {
-    return false;
-  }
-  
-  if (token == PEOF) {
-    return postParseStep(instance);
-  } else if (token != ST) {
-    printf("Expected 's.t.' to be the next token near \"%s\"\n", input);
-    return false;
-  }
-  
   input = parseConstraints(instance, input);
-  
-  if (!input) {
-    return false;
-  }
+  CHECKINPUTB();
   
   input = nextToken(&token, input, &tokenStart, &tokenSize);
-  
-  if (!input) {
-    return false;
-  }
+  CHECKINPUTB();
   
   if (token != PEOF) {
     printf("Unexpected symbol near \"%s\".\n", input);

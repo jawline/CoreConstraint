@@ -16,7 +16,7 @@ Variable Problem::createVariable(std::string const& name) {
 	return Variable(name, true, _lastVariableId++);
 }
 
-Variable Problem::getVariableWithName(std::string const& name) const {
+Variable Problem::getVariableWithName(std::string const& name) {
 	for (unsigned int i = 0; i < _variables.size(); i++) {
 		if (_variables[i].getName().compare(name) == 0) {
 			return _variables[i];
