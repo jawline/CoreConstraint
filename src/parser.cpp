@@ -54,6 +54,22 @@ char const* nextToken(TOKEN* token, char const* input, char const** tokenStart, 
     *token = MINUS;
     *tokenSize = 1;
     return input + 1;
+  } else if (strncmp(input, "<=", 2) == 0) {
+    *token = LTOE;
+    *tokenSize = 2;
+    return input + 2;
+  } else if (strncmp(input, ">=", 2) == 0) {
+    *token = GTOE;
+    *tokenSize = 2;
+    return input + 2;
+  } else if (*input == '<') {
+    *token = GT;
+    *tokenSize = 1;
+    return input + 1;
+  } else if (*input == '>') {
+    *token = GT;
+    *tokenSize = 1;
+    return input + 1;
   } else if (*input == '\0') {
     *token = PEOF;
     *tokenSize = 0;
