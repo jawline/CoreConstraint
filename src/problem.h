@@ -22,7 +22,7 @@ namespace Constraints {
 		Variable createVariable(std::string const& name);
 		
 		/**
-		 * Get the variable with the specified name
+		 * Get the variable with the specified name, Creates one if it does not exist
 		 */
 		 Variable getVariableWithName(std::string const& name) const;
 		
