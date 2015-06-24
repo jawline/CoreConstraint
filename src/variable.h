@@ -17,6 +17,11 @@ namespace Constraints {
 		/**
 		 * Return the variables name
 		 */
+		 std::string getName() const;
+		
+		/**
+		 * Format variable info as a string
+		 */
 		std::string toString() const;
 		
 		/**
