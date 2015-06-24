@@ -159,7 +159,17 @@ char const* parseConstraint(Problem& instance, char const* input) {
   
   CHECKINPUT();
   
-  if (token != EQ) {
+  if (token == EQ) {
+    constraint.setComparisonType(Equal);
+  } else if (token == GT) {
+    constraint.setComparisonType(GreaterThan);
+  } else if (token == LT) {
+    constraint.setComparisonType(LessThan);
+  } else if (token == LTOE) {
+    constraint.setComparisonType(LessThanOrEqual);
+  } else if (token == GTOE) {
+    constraint.setComparisonType(GreaterThanOrEqual);
+  } else {
     printf("Expected equals near %s\n", input);
     return 0;
   }
