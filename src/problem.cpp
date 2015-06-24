@@ -16,6 +16,15 @@ Variable Problem::createVariable(std::string const& name) {
 	return Variable(name, true, _lastVariableId++);
 }
 
+Variable Problem::getVariableWithName(std::string const& name) const {
+	for (unsigned int i = 0; i < _variables.size(); i++) {
+		if (_variables[i].getName().compare(name) == 0) {
+			return _variables[i];
+		}
+	}
+	return createVariable(name);
+}
+
 void Problem::addConstraint(Constraint const& constraint) {
 	_constraints.push_back(constraint);
 }
