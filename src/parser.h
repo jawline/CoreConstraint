@@ -22,6 +22,7 @@ typedef enum {
  NUM,
  ST,
  EQ,
+ NE,
  GT,
  LT,
  GTOE,
