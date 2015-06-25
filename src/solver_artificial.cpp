@@ -74,7 +74,6 @@ bool Solver::artificialMinStep(Table& instance, int* rowBasis) {
 		}
 
 		handleFinalBasicData(instance, rowBasis);
-
 		restoreTable(instance, original);
 		
 		if (_excessiveLogging) {
