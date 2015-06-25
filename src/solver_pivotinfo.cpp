@@ -42,9 +42,6 @@ int Solver::findPivotColumn(Table& instance, bool minimize) {
 	}
 }
 
-/**
- * The pivot row is the row with the minimal positive result / pivot column ratio
- */
 int Solver::findPivotRow(Table& instance, int column) {
 
 	if (instance.getNumRows() < 2) {
