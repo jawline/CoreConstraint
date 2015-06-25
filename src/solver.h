@@ -21,6 +21,9 @@ namespace Simplex {
 		 */
 		static int findPivotRow(Table& instance, int column);
 		
+		/**
+		 * Find the basic row for a column
+		 */
 		static int findBasicRow(Table& instance, int col);
 		
 		/**
