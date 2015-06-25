@@ -51,7 +51,7 @@ std::string Constraint::toString() const {
 			result += _items[i].first.toString();
 			result += " ";
 		}
-		result += ComparisonTypeStrings[_type] + " (" + std::to_string(_type) + ") " + std::to_string(_value);
+		result += std::string(ComparisonTypeStrings[_type]) + " (" + std::to_string(_type) + ") " + std::to_string(_value);
 	} else {
 		result = "Empty Constraint";
 	}
