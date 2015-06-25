@@ -63,14 +63,21 @@ namespace Simplex {
 		 */
 		static bool allArtificialsZero(Table const& instance, std::vector<int> const& artificialVariables);
 		
+		/**
+		 * Returns true if there are artificial columns in the basis
+		 */
+		static bool artificialColumnsInBasis(int* basis, unsigned int numRows, std::vector<int> const& artificialColumns);
+		
+		/**
+		 * Finds the minimization on the table with artificial variables inserted in order to find a initial feasible solution for the problem
+		 */
+		static bool artificialMinStep(Table& instance, int* rowBasicData);
+		
 		static double findRatio(Table& instance, int row, int column, int resCol);
 		static void makeRowUnit(Table& instance, int row, int col);
 		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
 		static void setupArtificialTable(Table& instance, Table& original, std::vector<int> const& artificialVariables);
 		static void restoreTable(Table& instance, Table& original);
-		static bool artificialMinStep(Table& instance, int* rowBasicData);
-		static bool artificialColumnsInBasis(int* basis, unsigned int numRows, std::vector<int> const& artificialColumns);
-
 	public:
 		/**
 		 * Solve the simplex tableau
