@@ -77,10 +77,18 @@ namespace Simplex {
 		 * Restore the table after the artificial min step
 		 */
 		static void restoreTable(Table& instance, Table& original);
+		
+		/**
+		 * Make the specified row a unit by subtracting it by a multiple of itself
+		 */
+		static void makeRowUnit(Table& instance, int row, int col);
+		
+		/**
+		 * Make all other rows unit in the specified column by subtracting a multiple of baseRow from them
+		 */
+		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
 
 		static double findRatio(Table& instance, int row, int column, int resCol);
-		static void makeRowUnit(Table& instance, int row, int col);
-		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
 		static void setupArtificialTable(Table& instance, Table& original, std::vector<int> const& artificialVariables);
 	public:
 		/**
