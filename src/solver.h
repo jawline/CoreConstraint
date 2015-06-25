@@ -73,11 +73,15 @@ namespace Simplex {
 		 */
 		static bool artificialMinStep(Table& instance, int* rowBasicData);
 		
+		/**
+		 * Restore the table after the artificial min step
+		 */
+		static void restoreTable(Table& instance, Table& original);
+
 		static double findRatio(Table& instance, int row, int column, int resCol);
 		static void makeRowUnit(Table& instance, int row, int col);
 		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
 		static void setupArtificialTable(Table& instance, Table& original, std::vector<int> const& artificialVariables);
-		static void restoreTable(Table& instance, Table& original);
 	public:
 		/**
 		 * Solve the simplex tableau
