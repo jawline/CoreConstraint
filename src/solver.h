@@ -43,6 +43,16 @@ namespace Simplex {
 		 */
 		static void tableBasicArtificialStep(Table& instance, int* rowBasis);
 		
+		/**
+		 * Do a single pivot operation with the specified row and column
+		 */
+		static void doPivot(Table& instance, int* basis, unsigned int row, unsigned int col);
+		
+		/**
+		 * Pivot the table finding either the max or min if solvable (Finds min if minimize = true)
+		 */
+		static bool pivotTable(Table& instance, int* rowBasicData, bool minimize = false);
+		
 		static double findRatio(Table& instance, int row, int column, int resCol);
 		static void makeRowUnit(Table& instance, int row, int col);
 		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
@@ -50,8 +60,6 @@ namespace Simplex {
 		static void restoreTable(Table& instance, Table& original);
 		static bool artificialMinStep(Table& instance, int* rowBasicData);
 		static void handleFinalBasicData(Table& instance, int* rowBasicData);
-		static bool pivotTable(Table& instance, int* rowBasicData, bool minimize);
-		static void doPivot(Table& instance, int* basis, unsigned int row, unsigned int col);
 		static bool allArtificialsZero(Table const& instance, std::vector<int> const& artificialVariables);
 		static bool artificialColumnsInBasis(int* basis, unsigned int numRows, std::vector<int> const& artificialColumns);
 
