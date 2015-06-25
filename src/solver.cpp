@@ -61,14 +61,12 @@ void Solver::findBasicData(Table& instance, int* rowBasis) {
 
 	//First row is the objective function, should have no basic variables
 	for (unsigned int i = 1; i < instance.getNumRows(); i++) {
-		
 		rowBasis[i] = findBasic(instance, i);
-		
+
 		if (rowBasis[i] == -1) {
 			int col = instance.addColumn(std::string("artificial") + std::to_string(_lastArtificial++), true);
 			instance.setField(i, col, 1);
 			rowBasis[i] = col;
-			
 			if (_excessiveLogging) {
 				printf("DEBUG: Failed to find basic variable for row %i\n", i);
 				printf("DEBUG: Creating artificial variable for row %i\n", i);
