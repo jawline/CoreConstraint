@@ -145,16 +145,6 @@ Constraint& Constraint::minus(Constraint const& other) {
 	return *this;
 }
 
-Constraint& Constraint::multiply(Constraint const& other) {
-	printf("TODO: Multiply\n");
-	return *this;
-}
-
-Constraint& Constraint::divide(Constraint const& other) {
-	printf("TODO: Divide\n");
-	return *this;
-}
-
 Constraint& Constraint::scale(double scalar) {
 	for (unsigned int i = 0; i < _items.size(); i++) {
 		_items[i].second *= scalar;
