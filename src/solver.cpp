@@ -43,15 +43,6 @@ void Solver::handleFinalBasicData(Table& instance, int* rowBasis) {
 	}
 }
 
-bool Solver::allArtificialsZero(Table const& instance, std::vector<int> const& artificialVariables) {
-	for (unsigned int i = 0; i < artificialVariables.size(); i++) {
-		if (instance.getField(0, artificialVariables[i]) != 0) {
-			return false;
-		}
-	}
-	return true;
-}
-
 void Solver::doPivot(Table& instance, int* basis, unsigned int pivotR, unsigned int pivotC) {		
 	double ratio = findRatio(instance, pivotR, pivotC, 0);
 	makeRowUnit(instance, pivotR, pivotC);
