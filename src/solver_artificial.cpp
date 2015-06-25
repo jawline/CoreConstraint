@@ -35,6 +35,15 @@ void Solver::restoreTable(Table& instance, Table& original) {
 	instance.removeArtificials();
 }
 
+bool Solver::allArtificialsZero(Table const& instance, std::vector<int> const& artificialVariables) {
+	for (unsigned int i = 0; i < artificialVariables.size(); i++) {
+		if (instance.getField(0, artificialVariables[i]) != 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
 bool Solver::artificialMinStep(Table& instance, int* rowBasis) {
 	std::vector<int> artificialVariables = instance.getArtificialColumnList();
 	unsigned int numArtificials = artificialVariables.size();
