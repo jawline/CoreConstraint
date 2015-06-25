@@ -14,7 +14,7 @@ INSTALL_INCLUDE_PATH = /usr/local/include/CoreCS/
 
 #Compiler settings
 CC=clang++
-CFLAGS=-c -Os -O3 -std=c++11 -Wall -ggdb -fPIC
+CFLAGS=-c -Os -std=c++11 -Wall -ggdb -fPIC
 LDFLAGS=-lregexpm -ggdb
 
 #Rules to find source code - NOTE: Look for a better way to scan directories. Nonrecursive works but is a bit ugly
