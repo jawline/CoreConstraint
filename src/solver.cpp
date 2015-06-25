@@ -25,24 +25,6 @@ void Solver::makeOtherRowsUnit(Table& instance, int baseRow, int col) {
 	}
 }
 
-void Solver::handleFinalBasicData(Table& instance, int* rowBasis) {
-	if (_excessiveLogging) {
-		printf("------------------------------------------\n");
-		printf("-              FINAL BASIC               -\n");
-		printf("------------------------------------------\n");
-		for (unsigned int i = 0; i < instance.getNumRows(); i++) {
-			if (rowBasis[i] != -1) {
-				printf("%s: %f\n",
-					instance.getColumn(i)->getName().c_str(), 
-					instance.getField(i, 0));
-			} else {
-				printf("Row %i unmapped\n", i);
-			}
-		}
-		printf("------------------------------------------\n");
-	}
-}
-
 void Solver::doPivot(Table& instance, int* basis, unsigned int pivotR, unsigned int pivotC) {		
 	double ratio = findRatio(instance, pivotR, pivotC, 0);
 	makeRowUnit(instance, pivotR, pivotC);
