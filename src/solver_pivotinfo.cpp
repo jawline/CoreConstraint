@@ -4,9 +4,6 @@
 
 using namespace Simplex;
 
-/**
- * Return the ID of the pivot column or -1 if there is not pivot column
- */
 int Solver::findPivotColumn(Table& instance, bool minimize) {
 
 	//Check there are at least three columns (At least one variable, the objective variable, and the results columns)
@@ -19,23 +16,27 @@ int Solver::findPivotColumn(Table& instance, bool minimize) {
 	double cPivotValue = instance.getField(0, 1);
 
 	if (minimize) {
-		//Never look at the first column, it shouldn't change
+
+		//Ignore results column, take all others
 		for (unsigned int i = 1; i < instance.getNumColumns(); i++) {
 			if (instance.getField(0, i) != 0 && instance.getField(0, i) > cPivotValue) {
 				cPivot = i;
 				cPivotValue = instance.getField(0, i);
 			}
 		}
+
 		//If the columns objective value is >= 0 then it cannot be a pivot column
 		return cPivotValue > 0 ? cPivot : -1;
 	} else {
-		//Never look at the first column, it shouldn't change
+		
+		//Ignore results column, take all others
 		for (unsigned int i = 1; i < instance.getNumColumns(); i++) {
 			if (instance.getField(0, i) != 0 && instance.getField(0, i) < cPivotValue) {
 				cPivot = i;
 				cPivotValue = instance.getField(0, i);
 			}
 		}
+		
 		//If the columns objective value is >= 0 then it cannot be a pivot column
 		return cPivotValue < 0 ? cPivot : -1;
 	}
