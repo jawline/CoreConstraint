@@ -18,14 +18,16 @@ int Solver::findBasicRow(Table& instance, int col) {
 	return count == 1 ? row : -1;
 }
 
-//TODO: Could be more efficient. The row->col->row search could be turned into just a row->col search
-int Solver::findBasic(Table& instance, int row) {
+void Solver::findBasic(Table& instance, int* rowBasicInfo) {
 
-	for (unsigned int i = 1; i < instance.getNumColumns(); i++) {
-		if (findBasicRow(instance, i) != -1 && instance.getField(row, i) == 1) {
-			return i;
-		}
+	for (unsigned int i = 0; i < instance.getNumRows(); i++) {
+		rowBasicInfo[i] = -1;
 	}
 
-	return -1;
+	for (unsigned int i = 1; i < instance.getNumColumns(); i++) {
+		int columnBasicRow = findBasicRow(instance, i);
+		if (columnBasicRow != -1) {
+			rowBasicInfo[columnBasicRow] = i;
+		}
+	}
 }
