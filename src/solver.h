@@ -10,11 +10,20 @@ namespace Simplex {
 	private:
 		static bool _excessiveLogging;
 		static unsigned int _lastArtificial;
+		
+		/**
+		 * Return the ID of the pivot column or -1 if there is not pivot column
+		 */
+		static int findPivotColumn(Table& instance, bool minimize);
+		
+		/**
+		 * The pivot row is the row with the minimal positive result / pivot column ratio
+		 */
+		static int findPivotRow(Table& instance, int column);
+		
 		static int findBasicRow(Table& instance, int col);
 		static int findBasic(Table& instance, int row);
-		static int findPivotColumn(Table& instance, bool minimize);
 		static double findRatio(Table& instance, int row, int column, int resCol);
-		static int findPivotRow(Table& instance, int column);
 		static void makeRowUnit(Table& instance, int row, int col);
 		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
 		static void setupArtificialTable(Table& instance, Table& original, std::vector<int> const& artificialVariables);
