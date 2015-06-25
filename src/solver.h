@@ -31,6 +31,11 @@ namespace Simplex {
 		 */
 		static void findBasicInfo(Table& instance, int* rowBasicInfo);
 		
+		/**
+		 * Compute the row basic data for the table, inserting artificial variables if necissary
+		 */
+		static void tableBasicArtificialStep(Table& instance, int* rowBasis);
+		
 		static double findRatio(Table& instance, int row, int column, int resCol);
 		static void makeRowUnit(Table& instance, int row, int col);
 		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
