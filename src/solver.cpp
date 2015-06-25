@@ -25,7 +25,7 @@ void Solver::makeOtherRowsUnit(Table& instance, int baseRow, int col) {
 	}
 }
 
-void Solver::findBasicData(Table& instance, int* rowBasis) {
+void Solver::tableBasicArtificialStep(Table& instance, int* rowBasis) {
 	
 	if (_excessiveLogging) {
 		printf("------------------------------------------\n");
