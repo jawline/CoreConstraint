@@ -76,8 +76,6 @@ namespace Constraints {
 		 */
 		Constraint& add(Constraint const& other);
 		Constraint& minus(Constraint const& other);
-		Constraint& multiply(Constraint const& other);
-		Constraint& divide(Constraint const& other);
 
 		/**
 		 * Scale all values in this constraint
