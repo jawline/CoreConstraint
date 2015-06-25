@@ -37,6 +37,7 @@ void Constraint::setComparisonType(ComparisonType const& type) {
 
 std::string Constraint::toString() const {
 	std::string result;
+	
 	if (_items.size()) {
 		for (unsigned int i = 0; i < _items.size(); i++) {
 			if (i) {
@@ -50,14 +51,11 @@ std::string Constraint::toString() const {
 			result += _items[i].first.toString();
 			result += " ";
 		}
-		result += ComparisonTypeStrings[_type];
-		result += " (";
-		result += std::to_string(_type);
-		result += ") ";
-		result += std::to_string(_value);
+		result += ComparisonTypeStrings[_type] + " (" + std::to_string(_type) + ") " + std::to_string(_value);
 	} else {
 		result = "Empty Constraint";
 	}
+	
 	return result;
 }
 
