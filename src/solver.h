@@ -8,7 +8,14 @@ namespace Simplex {
 
 	class Solver {
 	private:
+		/**
+		 * When enabled the solver will spit out a lot of debug info including the table at each pivot
+		 */
 		static bool _excessiveLogging;
+		
+		/**
+		 * Used to give each artificial variable added a unique name
+		 */
 		static unsigned int _lastArtificial;
 		
 		/**
