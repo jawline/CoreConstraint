@@ -18,7 +18,7 @@ int Solver::findBasicRow(Table& instance, int col) {
 	return count == 1 ? row : -1;
 }
 
-void Solver::findBasic(Table& instance, int* rowBasicInfo) {
+void Solver::findBasicInfo(Table& instance, int* rowBasicInfo) {
 
 	for (unsigned int i = 0; i < instance.getNumRows(); i++) {
 		rowBasicInfo[i] = -1;
