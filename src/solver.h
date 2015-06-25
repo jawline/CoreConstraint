@@ -53,13 +53,17 @@ namespace Simplex {
 		 */
 		static bool pivotTable(Table& instance, int* rowBasicData, bool minimize = false);
 		
+		/**
+		 * Called after the table is pivoted, can post process the final basic variable row data
+		 */
+		static void handleFinalBasicData(Table& instance, int* rowBasicData);
+		
 		static double findRatio(Table& instance, int row, int column, int resCol);
 		static void makeRowUnit(Table& instance, int row, int col);
 		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
 		static void setupArtificialTable(Table& instance, Table& original, std::vector<int> const& artificialVariables);
 		static void restoreTable(Table& instance, Table& original);
 		static bool artificialMinStep(Table& instance, int* rowBasicData);
-		static void handleFinalBasicData(Table& instance, int* rowBasicData);
 		static bool allArtificialsZero(Table const& instance, std::vector<int> const& artificialVariables);
 		static bool artificialColumnsInBasis(int* basis, unsigned int numRows, std::vector<int> const& artificialColumns);
 
