@@ -143,16 +143,20 @@ void Table::expandRows(int newNumColumns) {
 	//Allocate new data
 	double* newRowData = new double[getNumRows() * newNumColumns];
 	
+	#define SET_ROW(row,col,val) newRowData[(row * newNumColumns) + column] = val;
+	
 	//Copy the existing rows
 	for (unsigned int column = 0; column < newNumColumns; column++) {
 		for (unsigned int row = 0; row < getNumRows(); row++) {
 			if (column < getNumColumns()) {
-				newRowData[(row * newNumColumns) + column] = getField(row, column);
+				SET_ROW(row, column, getField(row, column));
 			} else {
-				newRowData[(row * newNumColumns) + column] = 0;
+				SET_ROW(row, column, 0);
 			}
 		}
 	}
+
+	#undef SET_ROW
 	
 	//Free old data and set new data
 	if (_rowData) {
