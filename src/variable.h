@@ -8,8 +8,11 @@ namespace Constraints {
 		std::string _name;
 		bool _isSigned;
 		unsigned int _variableIndex;
-		
+
 	public:
+		/**
+		 * Default constructor produces an invalid variable - allows for classes to assign variables after construction
+		 */
 		Variable();
 		Variable(std::string const& name, bool isSigned, unsigned int index);
 		~Variable();
