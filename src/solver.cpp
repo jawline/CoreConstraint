@@ -93,7 +93,7 @@ bool Solver::solveTable(Table& instance, SimplexResult& results) {
 		return false;
 	}
 	
-	if (!pivotTable(instance, rowBasis, false)) {
+	if (!pivotTable(instance, rowBasis)) {
 		return false;
 	}
 	
