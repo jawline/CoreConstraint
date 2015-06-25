@@ -22,13 +22,17 @@ namespace Simplex {
 		static int findPivotRow(Table& instance, int column);
 		
 		static int findBasicRow(Table& instance, int col);
-		static int findBasic(Table& instance, int row);
+		
+		/**
+		 * Compute the basic columns for each row
+		 */
+		static void findBasicInfo(Table& instance, int* rowBasicInfo);
+		
 		static double findRatio(Table& instance, int row, int column, int resCol);
 		static void makeRowUnit(Table& instance, int row, int col);
 		static void makeOtherRowsUnit(Table& instance, int baseRow, int col);
 		static void setupArtificialTable(Table& instance, Table& original, std::vector<int> const& artificialVariables);
 		static void restoreTable(Table& instance, Table& original);
-		static void findBasicData(Table& instance, int* rowBasicData);
 		static bool artificialMinStep(Table& instance, int* rowBasicData);
 		static void handleFinalBasicData(Table& instance, int* rowBasicData);
 		static bool pivotTable(Table& instance, int* rowBasicData, bool minimize);
