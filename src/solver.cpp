@@ -150,7 +150,7 @@ bool Solver::solveTable(Table& instance, SimplexResult& results) {
 	int* rowBasis = new int[instance.getNumRows()];
 
 	//Find the columns with only one `1` or insert artificial variables
-	findBasicData(instance, rowBasis);
+	tableBasicArtificialStep(instance, rowBasis);
 	
 	/* 
 	 * If there are any artificial variables inserted then this min step will attempt to find
@@ -166,9 +166,7 @@ bool Solver::solveTable(Table& instance, SimplexResult& results) {
 	}
 	
 	handleFinalBasicData(instance, rowBasis);
-
 	results = SimplexResult(instance, rowBasis);
-
 	delete[] rowBasis;
 
 	return true;
