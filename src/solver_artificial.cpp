@@ -74,7 +74,7 @@ bool Solver::artificialMinStep(Table& instance, int* rowBasis) {
 		}
 
 		handleFinalBasicData(instance, rowBasis);
-		restoreTable(instance, original);
+		restoreObjective(instance, original);
 		
 		if (_excessiveLogging) {
 			printf("DEBUG: Stripped artificials\n");
