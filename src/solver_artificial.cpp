@@ -28,7 +28,7 @@ bool Solver::artificialColumnsInBasis(int* basis, unsigned int numRows, std::vec
 	return false;
 }
 
-void Solver::restoreTable(Table& instance, Table& original) {
+void Solver::restoreObjective(Table& instance, Table& original) {
 	for (unsigned int i = 0; i < instance.getNumColumns(); i++) {
 		instance.setField(0, i, original.getField(0, i));
 	}
@@ -74,7 +74,7 @@ bool Solver::artificialMinStep(Table& instance, int* rowBasis) {
 		}
 
 		handleFinalBasicData(instance, rowBasis);
-		restoreTable(instance, original);
+		restoreObjective(instance, original);
 		
 		if (_excessiveLogging) {
 			printf("DEBUG: Stripped artificials\n");

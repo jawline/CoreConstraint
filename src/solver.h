@@ -81,7 +81,7 @@ namespace Simplex {
 		/**
 		 * Restore the table after the artificial min step
 		 */
-		static void restoreTable(Table& instance, Table& original);
+		static void restoreObjective(Table& instance, Table& original);
 		
 		/**
 		 * Make the specified row a unit by subtracting it by a multiple of itself
