@@ -138,25 +138,25 @@ void Table::addRow() {
 	_numRows++;
 }
 
+void Table::setRow(double* data, unsigned int row, unsigned int col, unsigned int cols, double val) {
+	data[(row * cols) + col] = val;
+}
+
 void Table::expandRows(int newNumColumns) {
 	
 	//Allocate new data
 	double* newRowData = new double[getNumRows() * newNumColumns];
 	
-	#define SET_ROW(row,col,val) newRowData[(row * newNumColumns) + column] = val;
-	
 	//Copy the existing rows
 	for (unsigned int column = 0; column < newNumColumns; column++) {
 		for (unsigned int row = 0; row < getNumRows(); row++) {
 			if (column < getNumColumns()) {
-				SET_ROW(row, column, getField(row, column));
+				setRow(newRowData, row, column, newNumColumns, getField(row, column));
 			} else {
-				SET_ROW(row, column, 0);
+				setRow(newRowData, row, column, newNumColumns, 0);
 			}
 		}
 	}
-
-	#undef SET_ROW
 	
 	//Free old data and set new data
 	if (_rowData) {

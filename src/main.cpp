@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include "solver.h"
 #include "parser.h"
 
 using namespace Simplex;
@@ -22,6 +23,8 @@ int main(int argc, char** argv) {
 	}
 
 	parserFree();
+
+	Simplex::Solver::setLogging(true);
 
 	std::cout << p.toString();
 	return 0;

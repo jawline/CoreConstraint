@@ -21,6 +21,8 @@ namespace Simplex {
 		 * Copy this data from another
 		 */
 		void copyFrom(Table const& other);
+
+		static void setRow(double* data, unsigned int row, unsigned int col, unsigned int cols, double v);
 	public:
 		Table();
 		Table(Table const& other);
